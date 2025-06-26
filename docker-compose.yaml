@@ -2,14 +2,6 @@ version: '3'
 
 services:
   base: &base
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile
-      args:
-        BUNDLE_WITHOUT: ''
-        EXECJS_RUNTIME: 'Node'
-        RAILS_ENV: 'development'
-        RAILS_SERVE_STATIC_FILES: 'false'
     tty: true
     stdin_open: true
     image: ghcr.io/gridtechrnd/chatwoot-development:latest
@@ -17,9 +9,6 @@ services:
 
   rails:
     <<: *base
-    build:
-      context: .
-      dockerfile: ./docker/dockerfiles/rails.Dockerfile
     image: ghcr.io/gridtechrnd/chatwoot-rails:latest
     volumes:
       - ./:/app:delegated
@@ -63,9 +52,6 @@ services:
 
   vite:
     <<: *base
-    build:
-      context: .
-      dockerfile: ./docker/dockerfiles/vite.Dockerfile
     image: ghcr.io/gridtechrnd/chatwoot-vite:latest
     volumes:
       - ./:/app:delegated
