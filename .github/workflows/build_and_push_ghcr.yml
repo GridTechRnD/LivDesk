@@ -34,7 +34,8 @@ jobs:
             RAILS_ENV=development
             NODE_ENV=development
             BUNDLE_WITHOUT=
-            
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push rails image
         uses: docker/build-push-action@v5
@@ -47,6 +48,8 @@ jobs:
             RAILS_ENV=development
             NODE_ENV=development
             BUNDLE_WITHOUT=
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push vite image
         uses: docker/build-push-action@v5
@@ -55,3 +58,5 @@ jobs:
           file: ./docker/dockerfiles/vite.Dockerfile
           push: true
           tags: ghcr.io/gridtechrnd/chatwoot-vite:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
