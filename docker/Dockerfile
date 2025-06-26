@@ -66,6 +66,7 @@ RUN apk update && apk add --no-cache build-base musl ruby-full ruby-dev gcc make
 RUN bundle config set --local force_ruby_platform true
 
 # Do not install development or test gems in production
+RUN echo "BUNDLE_WITHOUT=$BUNDLE_WITHOUT RAILS_ENV=$RAILS_ENV"
 RUN if [ "$RAILS_ENV" = "production" ]; then \
   bundle config set without 'development test'; bundle install -j 4 -r 3; \
   else bundle install -j 4 -r 3; \
@@ -75,6 +76,9 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm i
 
 COPY . /app
+
+# Fix git safe directory issue for local dev with mounted volumes
+RUN git config --global --add safe.directory /app
 
 # creating a log directory so that image wont fail when RAILS_LOG_TO_STDOUT is false
 # https://github.com/chatwoot/chatwoot/issues/701
