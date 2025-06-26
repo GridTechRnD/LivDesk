@@ -1,4 +1,4 @@
-name: Build and Push Chatwoot Images to GHCR
+name: Build and Push Chatwoot Dev Images to GHCR
 
 on:
   workflow_dispatch:
@@ -23,26 +23,32 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push base image (chatwoot-development)
+      - name: Build and push dev base image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/Dockerfile
+          file: .devcontainer/Dockerfile.base
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-development:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-dev-base:latest
 
-      - name: Build and push rails image
+      - name: Build and push dev rails image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/dockerfiles/rails.Dockerfile
+          file: .devcontainer/Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-rails:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-rails:dev
+          build-args: |
+            RAILS_ENV=development
+            NODE_ENV=development
+            BUNDLE_WITHOUT=
 
-      - name: Build and push vite image
+      - name: Build and push dev vite image
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./docker/dockerfiles/vite.Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-vite:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-vite:dev
+          build-args: |
+            NODE_ENV=development
