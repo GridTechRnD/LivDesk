@@ -1,4 +1,4 @@
-FROM chatwoot:development
+FROM ghcr.io/gridtechrnd/chatwoot-development:latest
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
