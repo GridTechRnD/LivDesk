@@ -74,7 +74,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - postgres:/data/postgres
+      - postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${POSTGRES_DATABASE:-livdesk_production}
       - POSTGRES_USER=${POSTGRES_USERNAME:-postgres}
