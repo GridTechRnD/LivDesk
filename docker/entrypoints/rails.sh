@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -x
-
+git config --global --add safe.directory /app
 # Remove a potentially pre-existing server.pid for Rails.
 rm -rf /app/tmp/pids/server.pid
 rm -rf /app/tmp/cache/*
