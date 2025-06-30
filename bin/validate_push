@@ -3,6 +3,14 @@
 # script prevents pushing to develop and master by mistake
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
+user="$(git config user.email)"
+
+echo "[validate_push] user: $user, branch: $branch" 1>&2
+
+# Allow god user to push directly (support both emails)
+if [ "$user" = "joao.antunes@gridtechrnd.com" ] || [ "$user" = "joao.antunes@gridtech.com.br" ]; then
+  exit 0
+fi
 
 if [ "$branch" = "master" ]; then
   echo "You can't push directly to master branch"

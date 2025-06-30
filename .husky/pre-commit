@@ -1,8 +1,14 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Ensure nvm and npx are available for hooks
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # lint js and vue files
-npx --no-install lint-staged
+if command -v npx >/dev/null 2>&1; then
+  npx --no-install lint-staged
+fi
 
 # lint only staged ruby files that still exist (not deleted)
 git diff --name-only --cached | xargs -I {} sh -c 'test -f "{}" && echo "{}"' | grep '\.rb$' | xargs -I {} bundle exec rubocop --force-exclusion -a "{}" || true
