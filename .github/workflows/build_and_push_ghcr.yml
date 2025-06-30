@@ -1,4 +1,4 @@
-name: Build and Push Chatwoot Dev Images to GHCR
+name: (deprecated) Build and Push Chatwoot Dev Images to GHCR
 
 on:
   push:
