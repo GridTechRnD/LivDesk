@@ -1,17 +1,11 @@
-name: Build and Push Chatwoot Dev Images to GHCR
+name: Publish Image to GHCR
 
 on:
-  push:
-    branches:
-      - develop
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,40 +20,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push base image (chatwoot-development)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./docker/Dockerfile
-          push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-development:latest
-          build-args: |
-            RAILS_ENV=development
-            NODE_ENV=development
-            BUNDLE_WITHOUT=
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Build and push rails image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./docker/dockerfiles/rails.Dockerfile
-          push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-rails:latest
-          build-args: |
-            RAILS_ENV=development
-            NODE_ENV=development
-            BUNDLE_WITHOUT=
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Build and push vite image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./docker/dockerfiles/vite.Dockerfile
-          push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-vite:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Echo
+        run: echo "Checkout, Buildx, and GHCR login succeeded. Ready for build."
