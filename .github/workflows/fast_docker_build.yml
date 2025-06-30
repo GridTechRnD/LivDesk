@@ -1,0 +1,45 @@
+name: Fast Docker Build Check
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check if base image dependencies changed
+        run: |
+          git fetch origin develop --depth=1
+          if git diff --name-only origin/develop...HEAD | grep -E '(^docker/Dockerfile$|^Gemfile$|^Gemfile.lock$|^package.json$|^pnpm-lock.yaml$)'; then
+            echo "::warning file=,line=1,col=1::Base image dependencies changed! Merge to develop/main to trigger a full base image build."
+          fi
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build rails image (no push)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./docker/dockerfiles/rails.Dockerfile
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            RAILS_ENV=development
+            NODE_ENV=development
+            BUNDLE_WITHOUT=
+
+      - name: Build vite image (no push)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./docker/dockerfiles/vite.Dockerfile
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
