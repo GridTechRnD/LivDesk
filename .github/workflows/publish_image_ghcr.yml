@@ -9,5 +9,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Echo
-        run: echo "Checkout succeeded. Ready to add build steps."
+        run: echo "Checkout and Buildx succeeded. Ready for login/build."
