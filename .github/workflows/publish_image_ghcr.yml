@@ -1,0 +1,13 @@
+name: Publish Image to GHCR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Echo
+        run: echo "Checkout succeeded. Ready to add build steps."
