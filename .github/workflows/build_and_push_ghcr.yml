@@ -1,4 +1,4 @@
-name: (deprecated) Build and Push Chatwoot Dev Images to GHCR
+name: Build and Push Chatwoot Dev Images to GHCR
 
 on:
   push:
@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout code
