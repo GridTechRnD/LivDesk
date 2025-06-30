@@ -1,9 +1,9 @@
-name: Build and Push Chatwoot Dev Images to GHCR
+name: Build and Push Chatwoot Production Images to GHCR
 
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build:
@@ -25,17 +25,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push base image (chatwoot-development)
+      - name: Build and push base image (chatwoot-production)
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-development:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-production:latest
           build-args: |
-            RAILS_ENV=development
-            NODE_ENV=development
-            BUNDLE_WITHOUT=
+            RAILS_ENV=production
+            NODE_ENV=production
+            BUNDLE_WITHOUT=development:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -45,11 +45,11 @@ jobs:
           context: .
           file: ./docker/dockerfiles/rails.Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-rails:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-rails-prod:latest
           build-args: |
-            RAILS_ENV=development
-            NODE_ENV=development
-            BUNDLE_WITHOUT=
+            RAILS_ENV=production
+            NODE_ENV=production
+            BUNDLE_WITHOUT=development:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -59,6 +59,6 @@ jobs:
           context: .
           file: ./docker/dockerfiles/vite.Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-vite:latest
+          tags: ghcr.io/gridtechrnd/chatwoot-vite-prod:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
