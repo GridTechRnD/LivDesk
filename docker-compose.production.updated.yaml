@@ -2,13 +2,16 @@ version: '3'
 
 services:
   updated_base: &updated_base
-    image: chatwoot/chatwoot:latest
+    image: ghcr.io/gridtechrnd/livdesk-production:latest
     env_file: .env
+    tty: true
+    stdin_open: true
     volumes:
       - /livdesk/PRD-updated/storage:/app/storage
 
   updated_rails:
     <<: *updated_base
+    image: ghcr.io/gridtechrnd/livdesk-rails:latest
     depends_on:
       - updated_postgres
       - updated_redis
@@ -17,21 +20,34 @@ services:
     environment:
       - NODE_ENV=production
       - RAILS_ENV=production
-      - INSTALLATION_ENV=docker
+      - VITE_DEV_SERVER_HOST=updated_vite
     entrypoint: docker/entrypoints/rails.sh
-    command: ['bundle', 'exec', 'rails', 's', '-p', '3000', '-b', '0.0.0.0']
+    command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
     restart: always
 
   updated_sidekiq:
     <<: *updated_base
+    image: ghcr.io/gridtechrnd/livdesk-rails:latest
     depends_on:
       - updated_postgres
       - updated_redis
     environment:
       - NODE_ENV=production
       - RAILS_ENV=production
-      - INSTALLATION_ENV=docker
-    command: ['bundle', 'exec', 'sidekiq', '-C', 'config/sidekiq.yml']
+    command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
+    restart: always
+
+  updated_vite:
+    <<: *updated_base
+    image: ghcr.io/gridtechrnd/livdesk-vite:latest
+    ports:
+      - '127.0.0.1:3301:3036' # Vite prod server
+    environment:
+      - VITE_DEV_SERVER_HOST=0.0.0.0
+      - NODE_ENV=production
+      - RAILS_ENV=production
+    entrypoint: docker/entrypoints/vite.sh
+    command: bin/vite build
     restart: always
 
   updated_postgres:
@@ -42,9 +58,9 @@ services:
     volumes:
       - /livdesk/PRD-updated/postgres:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=chatwoot
+      - POSTGRES_DB=livdesk_production
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   updated_redis:
     image: redis:alpine
@@ -55,3 +71,5 @@ services:
       - /livdesk/PRD-updated/redis:/data
     ports:
       - '127.0.0.1:16379:6379'
+
+volumes:
