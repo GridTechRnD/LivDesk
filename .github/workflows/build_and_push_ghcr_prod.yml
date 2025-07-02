@@ -45,7 +45,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/dockerfiles/rails.Dockerfile
+          file: ./docker/dockerfiles/rails.prod.Dockerfile
           push: true
           tags: ghcr.io/gridtechrnd/livdesk-rails-prod:latest
           build-args: |
@@ -59,7 +59,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/dockerfiles/vite.Dockerfile
+          file: ./docker/dockerfiles/vite.prod.Dockerfile
           push: true
           tags: ghcr.io/gridtechrnd/livdesk-vite-prod:latest
           cache-from: type=gha
