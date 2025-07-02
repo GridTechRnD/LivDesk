@@ -27,13 +27,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push base image (chatwoot-development)
+      - name: Build and push base image (livdesk-development)
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-development:latest
+          tags: ghcr.io/gridtechrnd/livdesk-development:latest
           build-args: |
             RAILS_ENV=development
             NODE_ENV=development
@@ -47,7 +47,7 @@ jobs:
           context: .
           file: ./docker/dockerfiles/rails.Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-rails:latest
+          tags: ghcr.io/gridtechrnd/livdesk-rails:latest
           build-args: |
             RAILS_ENV=development
             NODE_ENV=development
@@ -61,6 +61,6 @@ jobs:
           context: .
           file: ./docker/dockerfiles/vite.Dockerfile
           push: true
-          tags: ghcr.io/gridtechrnd/chatwoot-vite:latest
+          tags: ghcr.io/gridtechrnd/livdesk-vite:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max

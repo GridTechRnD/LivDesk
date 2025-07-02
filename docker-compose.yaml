@@ -4,12 +4,12 @@ services:
   base: &base
     tty: true
     stdin_open: true
-    image: ghcr.io/gridtechrnd/chatwoot-development:latest
+    image: ghcr.io/gridtechrnd/livdesk-development:latest
     env_file: .env
 
   rails:
     <<: *base
-    image: ghcr.io/gridtechrnd/chatwoot-rails:latest
+    image: ghcr.io/gridtechrnd/livdesk-rails:latest
     volumes:
       - ./:/app:delegated
       - node_modules:/app/node_modules
@@ -34,7 +34,7 @@ services:
 
   sidekiq:
     <<: *base
-    image: ghcr.io/gridtechrnd/chatwoot-rails:latest
+    image: ghcr.io/gridtechrnd/livdesk-rails:latest
     volumes:
       - ./:/app:delegated
       - node_modules:/app/node_modules
@@ -52,7 +52,7 @@ services:
 
   vite:
     <<: *base
-    image: ghcr.io/gridtechrnd/chatwoot-vite:latest
+    image: ghcr.io/gridtechrnd/livdesk-vite:latest
     volumes:
       - ./:/app:delegated
       - node_modules:/app/node_modules
