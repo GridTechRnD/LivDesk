@@ -1,31 +1,23 @@
-# Pull Request Template
+## Descrição
 
-## Description
+Inclua um resumo da alteração e dos problemas corrigidos. Também mencione a motivação, contexto relevante e quaisquer dependências que esta mudança requer.
 
-Please include a summary of the change and issue(s) fixed. Also, mention relevant motivation, context, and any dependencies that this change requires.
-Fixes # (issue)
+## Tipo de mudança
 
-## Type of change
+Por favor, apague as opções que não são relevantes.
 
-Please delete options that are not relevant.
+- [ ] Correção de bug (mudança que corrige um problema)
+- [ ] Nova funcionalidade (mudança que adiciona uma funcionalidade)
+- [ ] Mudança crítica (quebra compatibilidade ou altera comportamento esperado)
+- [ ] Esta mudança requer atualização de documentação
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality not to work as expected)
-- [ ] This change requires a documentation update
+## Como isso foi testado?
 
-## How Has This Been Tested?
-
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+Descreva os testes realizados para verificar suas alterações. Forneça instruções para que possamos reproduzir. Liste também detalhes relevantes da configuração de teste.
 
 
 ## Checklist:
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my code
-- [ ] I have commented on my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] Any dependent changes have been merged and published in downstream modules
+- [ ] Realizei uma auto-revisão do meu código
+- [ ] Minhas alterações não geram novos avisos
+- [ ] Adicionei testes que comprovam que minha correção é eficaz ou que minha funcionalidade funciona
