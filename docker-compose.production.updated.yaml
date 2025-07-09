@@ -57,10 +57,7 @@ services:
       - '127.0.0.1:55432:5432'
     volumes:
       - /livdesk/PRD-updated/postgres:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=livdesk_production
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    env_file: .env
 
   updated_redis:
     image: redis:alpine
@@ -71,5 +68,3 @@ services:
       - /livdesk/PRD-updated/redis:/data
     ports:
       - '127.0.0.1:16379:6379'
-
-volumes:
