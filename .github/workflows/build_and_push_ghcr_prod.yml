@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./docker/prod.Dockerfile
+          file: ./docker/Dockerfile
           push: true
           tags: ghcr.io/gridtechrnd/livdesk-production:latest
           build-args: |
@@ -40,6 +40,7 @@ jobs:
             BUNDLE_WITHOUT=development:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          no-cache: true  # TEMP: force rebuild for debugging
 
       - name: Build and push rails image
         uses: docker/build-push-action@v5
