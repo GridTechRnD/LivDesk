@@ -312,7 +312,7 @@ export default {
       <span 
         class="text-slate-500 dark:text-slate-400 text-xs font-medium leading-3 py-0.5 px-0 inline-flex text-ellipsis overflow-hidden whitespace-nowrap"
       >
-        #{{ chat.id }}
+        <span v-if="chat.custom_attributes.protocolo_glpi">#{{ chat.custom_attributes.protocolo_glpi }}</span>
       </span>
       <MessagePreview
         v-if="lastMessageInChat"
