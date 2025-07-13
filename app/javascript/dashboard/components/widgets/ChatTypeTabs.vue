@@ -1,7 +1,9 @@
 <script setup>
 import { computed } from 'vue';
+import { useStore } from 'vuex';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import wootConstants from 'dashboard/constants/globals';
+
 
 const props = defineProps({
   items: {
@@ -13,6 +15,9 @@ const props = defineProps({
     default: wootConstants.ASSIGNEE_TYPE.ME,
   },
 });
+
+const store = useStore();
+const currentRole = computed(() => store.getters['getCurrentRole']);
 
 const emit = defineEmits(['chatTabChange']);
 
@@ -58,6 +63,7 @@ useKeyboardEvents(keyboardEvents);
       :index="index"
       :name="item.name"
       :count="item.count"
+      v-if="(item.key === 'all' && currentRole === 'administrator') || item.key !== 'all'"
     />
   </woot-tabs>
 </template>

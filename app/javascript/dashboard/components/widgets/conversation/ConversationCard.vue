@@ -1,3 +1,4 @@
+
 <script>
 import { mapGetters } from 'vuex';
 import { getLastMessage } from 'dashboard/helper/conversationHelper';
@@ -308,6 +309,11 @@ export default {
       >
         {{ currentContact.name }}
       </h4>
+      <span 
+        class="text-slate-500 dark:text-slate-400 text-xs font-medium leading-3 py-0.5 px-0 inline-flex text-ellipsis overflow-hidden whitespace-nowrap"
+      >
+        #{{ chat.id }}
+      </span>
       <MessagePreview
         v-if="lastMessageInChat"
         :message="lastMessageInChat"
