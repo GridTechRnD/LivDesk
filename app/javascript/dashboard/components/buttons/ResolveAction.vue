@@ -145,15 +145,17 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
         :label="t('CONVERSATION.HEADER.RESOLVE_ACTION')"
         size="sm"
         color="slate"
+        icon="i-lucide-check"
         class="ltr:rounded-r-none rtl:rounded-l-none !outline-0"
         :is-loading="isLoading"
         @click="onCmdResolveConversation"
       />
       <Button
         v-else-if="isResolved"
-        :label="t('CONVERSATION.HEADER.REOPEN_ACTION')"
+        :label="t('CONVERSATION.HEADER.SOLVED')"
         size="sm"
         color="slate"
+        icon="i-lucide-check-circle"
         class="ltr:rounded-r-none rtl:rounded-l-none !outline-0"
         :is-loading="isLoading"
         @click="onCmdOpenConversation"

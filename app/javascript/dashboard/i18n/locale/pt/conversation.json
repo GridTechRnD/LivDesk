@@ -69,6 +69,7 @@
     "HEADER": {
       "RESOLVE_ACTION": "Resolver",
       "REOPEN_ACTION": "Reabrir",
+      "SOLVED": "Resolvido",
       "OPEN_ACTION": "Abertas",
       "MORE_ACTIONS": "More actions",
       "OPEN": "Mais",
