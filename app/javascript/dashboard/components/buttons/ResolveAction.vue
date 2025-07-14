@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useAlert } from 'dashboard/composables';
 import { useToggle } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
@@ -92,14 +92,18 @@ const toggleStatus = (status, snoozedUntil) => {
     });
 };
 
-const showSolutionModal = ref(false);
+const isModalVisible = ref(false);
 
 const onCmdOpenConversation = () => {
   toggleStatus(wootConstants.STATUS_TYPE.OPEN);
 };
 
 const onCmdResolveConversation = () => {
-  showSolutionModal.value = !showSolutionModal.value;
+  isModalVisible.value = true;
+};
+
+const onCancel = () => {
+  isModalVisible.value = false;
 };
 
 const keyboardEvents = {
@@ -207,16 +211,17 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
             start
             icon="i-lucide-circle-dot-dashed"
             class="w-full"
-            @click="() => toggleStatus(wootConstants.STATUS_TYPE.PENDING) && showSolutionModal == false"
+            @click="() => showSolutionModal == false"
           />
         </WootDropdownItem>
       </WootDropdownMenu>
     </div>
     <SolutionModal
-      :show="showSolutionModal"
+      :show="isModalVisible"
       :contact="currentChat"
       :chat="currentChat"
-      @close="showSolutionModal = false"
+      @close="onCancel"
+      @update:show="isModalVisible = $event"
     />
   </div>
 </template>

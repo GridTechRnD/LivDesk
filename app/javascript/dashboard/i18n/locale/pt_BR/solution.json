@@ -2,6 +2,7 @@
     "SOLUTION": {
       "TITLE": "Adicione a solução do chamado",
       "DESC": "Escreva a solução encontrada ao chamado para resolvê-lo.",
-      "EMPTY_VALUES_ALERT": "Por favor, preencha o campo de solução."
+      "EMPTY_VALUES_ALERT": "Por favor, preencha o campo de solução.",
+      "SUCCESS_ALERT": "Chamado marcada como resolvido."
     }
 }

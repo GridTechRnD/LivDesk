@@ -11,10 +11,12 @@ import { useStore } from 'dashboard/composables/store';
 import { useI18n } from 'vue-i18n';
 import { copyTextToClipboard } from 'shared/helpers/clipboard';
 import { useAlert } from 'dashboard/composables';
+import Button from 'dashboard/components-next/button/Button.vue';
 
 export default {
   components: {
     CustomAttribute,
+    Button,
   },
   props: {
     show: {
@@ -64,10 +66,11 @@ export default {
 
     const onCmdResolveConversation = () => {
       if (customAttributes.value[solutionAttribute.value.attribute_key] !== undefined) {
-        console.log('success', customAttributes.value[solutionAttribute.value.attribute_key]);
         toggleStatus(wootConstants.STATUS_TYPE.RESOLVED);
+        isModalVisible.value = false;
+        emit('success');
+        useAlert(t('SOLUTION.SUCCESS_ALERT'));
       } else {
-        console.log('error', customAttributes.value[solutionAttribute.value.attribute_key]);
         useAlert(t('SOLUTION.EMPTY_VALUES_ALERT'));
       }
     };
@@ -80,11 +83,16 @@ export default {
 
     const onCancel = () => {
       isModalVisible.value = false;
+      emit('update:show', false);
       emit('cancel');
     };
 
     watch(() => props.show, (newVal) => {
       isModalVisible.value = newVal;
+    });
+
+    watch(isModalVisible, (newVal) => {
+      emit('update:show', newVal);
     });
 
     return {
@@ -185,15 +193,15 @@ export default {
         @copy="onCopy"
       />
       <div class="button-group">
-        <woot-button
+        <Button
           v-if="isOpen"
-          class-names="resolve"
-          color-scheme="success"
-          icon="checkmark"
-          emoji="✅"
+          size="sm"
+          color="teal"
+          icon="i-lucide-check"
+          class="!outline-0"
           :is-loading="isLoading"
           @click="onCmdResolveConversation"
-        >{{ $t('CONVERSATION.HEADER.RESOLVE_ACTION') }}</woot-button>
+        >{{ $t('CONVERSATION.HEADER.RESOLVE_ACTION') }}</Button>
       </div>
     </div>
   </woot-modal>
