@@ -70,6 +70,8 @@
       "RESOLVE_ACTION": "Resolver",
       "REOPEN_ACTION": "Reabrir",
       "SOLVED": "Resolvido",
+      "SOLVED_TOOLTIP": "Entre em contato com o administrador para reabrir o chamado",
+      "SOLVED_TOOLTIP_ADMIN": "Pressione para reabrir o chamado",
       "OPEN_ACTION": "Abertas",
       "MORE_ACTIONS": "More actions",
       "OPEN": "Mais",

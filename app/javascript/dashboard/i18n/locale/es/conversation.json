@@ -70,6 +70,8 @@
       "RESOLVE_ACTION": "Resolver",
       "REOPEN_ACTION": "Reabrir",
       "SOLVED": "Resuelto",
+      "SOLVED_TOOLTIP": "Contacta al administrador para reabrir el ticket",
+      "SOLVED_TOOLTIP_ADMIN": "Presiona para reabrir el ticket",
       "OPEN_ACTION": "Abrir",
       "MORE_ACTIONS": "More actions",
       "OPEN": "Más",

@@ -46,6 +46,11 @@ const isSnoozed = computed(
   () => currentChat.value.status === wootConstants.STATUS_TYPE.SNOOZED
 );
 
+const tooltipText = computed(() => {
+  if (isAdmin.value) return "CONVERSATION.HEADER.SOLVED_TOOLTIP_ADMIN";
+  return "CONVERSATION.HEADER.SOLVED_TOOLTIP";
+});
+  
 const showAdditionalActions = computed(
   () => !isPending.value && !isSnoozed.value
 );
@@ -158,12 +163,14 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
       />
       <Button
         v-else-if="isResolved"
+        v-tooltip.left="$t(tooltipText)"
         :label="t('CONVERSATION.HEADER.SOLVED')"
         size="sm"
         color="slate"
         icon="i-lucide-check-circle"
         class="ltr:rounded-r-none rtl:rounded-l-none !outline-0"
         :is-loading="isLoading"
+        :disabled="!isAdmin"
         @click="onCmdOpenConversation"
       />
       <Button
