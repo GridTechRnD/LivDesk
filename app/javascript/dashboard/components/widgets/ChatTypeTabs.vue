@@ -21,6 +21,13 @@ const currentRole = computed(() => store.getters['getCurrentRole']);
 
 const emit = defineEmits(['chatTabChange']);
 
+
+const visibleItems = computed(() => {
+  return props.items.filter(item => {
+    return (item.key === 'all' && currentRole.value === 'administrator') || item.key !== 'all';
+  });
+});
+
 const activeTabIndex = computed(() => {
   return props.items.findIndex(item => item.key === props.activeTab);
 });
@@ -57,13 +64,12 @@ useKeyboardEvents(keyboardEvents);
     @change="onTabChange"
   >
     <woot-tabs-item
-      v-for="(item, index) in items"
+      v-for="(item, index) in visibleItems"
       :key="item.key"
       class="text-sm"
       :index="index"
       :name="item.name"
       :count="item.count"
-      v-if="(item.key === 'all' && currentRole === 'administrator') || item.key !== 'all'"
     />
   </woot-tabs>
 </template>
