@@ -8,6 +8,7 @@ import { isValidURL } from '../helper/URLHelper';
 import { getRegexp } from 'shared/helpers/Validators';
 import { useVuelidate } from '@vuelidate/core';
 import { emitter } from 'shared/helpers/mitt';
+import { mapGetters } from 'vuex';
 
 import NextButton from 'dashboard/components-next/button/Button.vue';
 
@@ -45,6 +46,9 @@ export default {
     };
   },
   computed: {
+    ...mapGetters({
+      currentRole: 'getCurrentRole',
+    }),
     displayValue() {
       if (this.isAttributeTypeDate) {
         return this.value
@@ -226,7 +230,13 @@ export default {
             />
           </span>
           <NextButton
-            v-if="showActions && hasValue"
+            v-if="
+              showActions &&
+              hasValue &&
+              (attributeKey !== 'protocolo_glpi' ||
+                currentRole === 'administrator' ||
+                attributeKey !== 'solution')
+            "
             v-tooltip.left="$t('CUSTOM_ATTRIBUTES.ACTIONS.DELETE')"
             slate
             sm
@@ -290,7 +300,12 @@ export default {
           class="flex items-center max-w-[2rem] gap-1 ml-1 rtl:mr-1 rtl:ml-0"
         >
           <NextButton
-            v-if="showActions && hasValue"
+            v-if="
+              showActions &&
+              hasValue &&
+              (attributeKey !== 'protocolo_glpi' ||
+                currentRole === 'administrator')
+            "
             v-tooltip="$t('CUSTOM_ATTRIBUTES.ACTIONS.COPY')"
             xs
             slate

@@ -1,0 +1,9 @@
+{
+  "SOLUTION": {
+    "TITLE": "Add the solution to the ticket",
+    "DESC": "Write the solution found for the ticket to resolve it",
+    "EMPTY_VALUES_ALERT": "Please fill in the solution field",
+    "EMPTY_OTHER_ALERT": "Please add solution details in the text field",
+    "SUCCESS_ALERT": "Solution added successfully"
+  }
+}
