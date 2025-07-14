@@ -211,7 +211,7 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
             start
             icon="i-lucide-circle-dot-dashed"
             class="w-full"
-            @click="() => showSolutionModal == false"
+            @click="() => toggleStatus(wootConstants.STATUS_TYPE.PENDING)"
           />
         </WootDropdownItem>
       </WootDropdownMenu>
