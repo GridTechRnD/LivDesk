@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { ref, computed } from 'vue';
 import { useAlert } from 'dashboard/composables';
 import { useToggle } from '@vueuse/core';
 import { useI18n } from 'vue-i18n';
@@ -47,14 +47,12 @@ const isSnoozed = computed(
 );
 
 const tooltipText = computed(() => {
-  if (isAdmin.value) return "CONVERSATION.HEADER.SOLVED_TOOLTIP_ADMIN";
-  return "CONVERSATION.HEADER.SOLVED_TOOLTIP";
+  if (isAdmin.value) return 'CONVERSATION.HEADER.SOLVED_TOOLTIP_ADMIN';
+  return 'CONVERSATION.HEADER.SOLVED_TOOLTIP';
 });
-  
 const showAdditionalActions = computed(
   () => !isPending.value && !isSnoozed.value
 );
-
 const showOpenButton = computed(() => {
   return isPending.value || isSnoozed.value;
 });

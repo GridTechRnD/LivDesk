@@ -230,7 +230,13 @@ export default {
             />
           </span>
           <NextButton
-            v-if="showActions && hasValue && (attributeKey !== 'protocolo_glpi' || currentRole === 'administrator' || attributeKey !== 'solution')"
+            v-if="
+              showActions &&
+              hasValue &&
+              (attributeKey !== 'protocolo_glpi' ||
+                currentRole === 'administrator' ||
+                attributeKey !== 'solution')
+            "
             v-tooltip.left="$t('CUSTOM_ATTRIBUTES.ACTIONS.DELETE')"
             slate
             sm
@@ -294,7 +300,12 @@ export default {
           class="flex items-center max-w-[2rem] gap-1 ml-1 rtl:mr-1 rtl:ml-0"
         >
           <NextButton
-            v-if="showActions && hasValue && (attributeKey !== 'protocolo_glpi' || currentRole === 'administrator')"
+            v-if="
+              showActions &&
+              hasValue &&
+              (attributeKey !== 'protocolo_glpi' ||
+                currentRole === 'administrator')
+            "
             v-tooltip="$t('CUSTOM_ATTRIBUTES.ACTIONS.COPY')"
             xs
             slate

@@ -5,6 +5,7 @@ import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import wootConstants from 'dashboard/constants/globals';
 
 
+
 const props = defineProps({
   items: {
     type: Array,
@@ -15,16 +16,16 @@ const props = defineProps({
     default: wootConstants.ASSIGNEE_TYPE.ME,
   },
 });
-
-const store = useStore();
-const currentRole = computed(() => store.getters['getCurrentRole']);
-
 const emit = defineEmits(['chatTabChange']);
-
+const store = useStore();
+const currentRole = computed(() => store.getters.getCurrentRole);
 
 const visibleItems = computed(() => {
   return props.items.filter(item => {
-    return (item.key === 'all' && currentRole.value === 'administrator') || item.key !== 'all';
+    return (
+      (item.key === 'all' && currentRole.value === 'administrator') ||
+      item.key !== 'all'
+    );
   });
 });
 

@@ -9,7 +9,7 @@ import { useStore } from 'dashboard/composables/store';
 import { useI18n } from 'vue-i18n';
 import { useAlert } from 'dashboard/composables';
 import Button from 'dashboard/components-next/button/Button.vue';
-import { useAttrs, defineEmits } from 'vue';
+import { defineEmits } from 'vue';
 
 const props = defineProps({
   show: {
@@ -31,16 +31,20 @@ const { t } = useI18n();
 
 const currentChat = computed(() => store.getters.getSelectedChat);
 const contactId = computed(() => props.contact.id);
-const isOpen = computed(() => currentChat.value?.status === wootConstants.STATUS_TYPE.OPEN);
+const isOpen = computed(() =>
+  currentChat.value?.status === wootConstants.STATUS_TYPE.OPEN
+);
 
-const attributes = computed(() => store.getters['attributes/getAttributesByModel']('conversation_attribute'));
+const attributes = computed(() =>
+  store.getters['attributes/getAttributesByModel']('conversation_attribute')
+);
 
 const solutionAttributes = computed(() => {
   const solution = attributes.value.find(
-    (attribute) => attribute.attribute_key === 'solution_list',
+    attribute => attribute.attribute_key === 'solution_list'
   );
   const solutionText = attributes.value.find(
-    (attribute) => attribute.attribute_key === 'solution',
+    attribute => attribute.attribute_key === 'solution'
   );
   return { solution, solutionText };
 });
@@ -48,14 +52,16 @@ const solutionAttributes = computed(() => {
 const solutionAttribute = computed(() => solutionAttributes.value.solution);
 const solutionText = computed(() => solutionAttributes.value.solutionText);
 
-const customAttributes = computed(() => currentChat.value?.custom_attributes || {});
+const customAttributes = computed(() =>
+  currentChat.value?.custom_attributes || {}
+);
 
-const toggleStatus = (status) => {
+const toggleStatus = status => {
   isLoading.value = true;
   store
     .dispatch('toggleStatus', {
       conversationId: currentChat.value.id,
-      status,
+      status
     })
     .then(() => {
       isLoading.value = false;
@@ -98,20 +104,20 @@ const onCancel = () => {
 
 watch(
   () => props.show,
-  (newVal) => {
+  newVal => {
     isModalVisible.value = newVal;
-  },
+  }
 );
 
-watch(isModalVisible, (newVal) => {
+watch(isModalVisible, newVal => {
   emit('update:show', newVal);
 });
 
 watch(
   () => props.contact.id,
-  (id) => {
+  id => {
     store.dispatch('contacts/fetchContactableInbox', id);
-  },
+  }
 );
 
 const onUpdate = async (key, value) => {
@@ -119,7 +125,7 @@ const onUpdate = async (key, value) => {
   try {
     await store.dispatch('updateCustomAttributes', {
       conversationId: currentChat.value.id,
-      customAttributes: updatedAttributes,
+      customAttributes: updatedAttributes
     });
     useAlert(t('CUSTOM_ATTRIBUTES.FORM.UPDATE.SUCCESS'));
   } catch (error) {
@@ -129,12 +135,12 @@ const onUpdate = async (key, value) => {
   }
 };
 
-const onDelete = async (key) => {
+const onDelete = async key => {
   try {
     const { [key]: remove, ...updatedAttributes } = customAttributes.value;
     await store.dispatch('updateCustomAttributes', {
       conversationId: currentChat.value.id,
-      customAttributes: updatedAttributes,
+      customAttributes: updatedAttributes
     });
     useAlert(t('CUSTOM_ATTRIBUTES.FORM.DELETE.SUCCESS'));
   } catch (error) {
@@ -144,7 +150,7 @@ const onDelete = async (key) => {
   }
 };
 
-const onCopy = async (attributeValue) => {
+const onCopy = async attributeValue => {
   await navigator.clipboard.writeText(attributeValue);
   useAlert(t('CUSTOM_ATTRIBUTES.COPY_SUCCESSFUL'));
 };
@@ -155,7 +161,7 @@ const onSuccess = () => {
 
 // Fetch contactable inbox on mount
 store.dispatch('contacts/fetchContactableInbox', props.contact.id);
-</script>
+ </script>
 
 <template>
   <woot-modal v-model:show="isModalVisible" :on-close="onCancel">
