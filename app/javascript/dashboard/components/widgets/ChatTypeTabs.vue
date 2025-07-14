@@ -4,8 +4,6 @@ import { useStore } from 'vuex';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 import wootConstants from 'dashboard/constants/globals';
 
-
-
 const props = defineProps({
   items: {
     type: Array,

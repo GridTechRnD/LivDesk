@@ -311,9 +311,9 @@ export default {
         <span 
         v-if="chat.custom_attributes.protocolo_glpi"
         class="text-slate-500 dark:text-slate-400 text-xs font-medium leading-3 py-0.5 px-0 inline-flex text-ellipsis overflow-hidden whitespace-nowrap ml-1"
-        >
-          #{{ chat.custom_attributes.protocolo_glpi }}
-        </span>
+      >
+        #{{ chat.custom_attributes.protocolo_glpi }}
+      </span>
       </h4>
       <MessagePreview
         v-if="lastMessageInChat"

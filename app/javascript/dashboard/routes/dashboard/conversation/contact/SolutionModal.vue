@@ -41,10 +41,10 @@ const attributes = computed(() =>
 
 const solutionAttributes = computed(() => {
   const solution = attributes.value.find(
-    attribute => attribute.attribute_key === 'solution_list'
+    attribute => attribute.attribute_key === 'solution_list',
   );
   const solutionText = attributes.value.find(
-    attribute => attribute.attribute_key === 'solution'
+    attribute => attribute.attribute_key === 'solution',
   );
   return { solution, solutionText };
 });
@@ -125,7 +125,7 @@ const onUpdate = async (key, value) => {
   try {
     await store.dispatch('updateCustomAttributes', {
       conversationId: currentChat.value.id,
-      customAttributes: updatedAttributes
+      customAttributes: updatedAttributes,
     });
     useAlert(t('CUSTOM_ATTRIBUTES.FORM.UPDATE.SUCCESS'));
   } catch (error) {
@@ -140,7 +140,7 @@ const onDelete = async key => {
     const { [key]: remove, ...updatedAttributes } = customAttributes.value;
     await store.dispatch('updateCustomAttributes', {
       conversationId: currentChat.value.id,
-      customAttributes: updatedAttributes
+      customAttributes: updatedAttributes,
     });
     useAlert(t('CUSTOM_ATTRIBUTES.FORM.DELETE.SUCCESS'));
   } catch (error) {
@@ -161,7 +161,7 @@ const onSuccess = () => {
 
 // Fetch contactable inbox on mount
 store.dispatch('contacts/fetchContactableInbox', props.contact.id);
- </script>
+</script>
 
 <template>
   <woot-modal v-model:show="isModalVisible" :on-close="onCancel">
