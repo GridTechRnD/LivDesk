@@ -1,8 +1,9 @@
 {
     "SOLUTION": {
       "TITLE": "Solução",
-      "DESC": "Descreva a solução encontrada para encerrar o chamado.",
-      "EMPTY_VALUES_ALERT": "O campo de solução precisa ser preenchido.",
-      "SUCCESS_ALERT": "Chamado marcado como resolvido com sucesso."
+      "DESC": "Descreva a solução encontrada para encerrar o chamado",
+      "EMPTY_VALUES_ALERT": "O campo de solução precisa ser preenchido",
+      "EMPTY_OTHER_ALERT": "Adicione detalhes da solução no campo de texto",
+      "SUCCESS_ALERT": "Chamado marcado como resolvido com sucesso"
   }
 }

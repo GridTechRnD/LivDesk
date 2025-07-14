@@ -6,7 +6,7 @@ import { useI18n } from 'vue-i18n';
 import { useStore, useStoreGetters } from 'dashboard/composables/store';
 import { useEmitter } from 'dashboard/composables/emitter';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
-
+import { useAdmin } from 'dashboard/composables/useAdmin';
 import SolutionModal from 'dashboard/routes/dashboard/conversation/contact/SolutionModal.vue';
 import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem.vue';
 import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu.vue';
@@ -30,6 +30,8 @@ const closeDropdown = () => toggleDropdown(false);
 const openDropdown = () => toggleDropdown(true);
 
 const currentChat = computed(() => getters.getSelectedChat.value);
+
+const { isAdmin } = useAdmin();
 
 const isOpen = computed(
   () => currentChat.value.status === wootConstants.STATUS_TYPE.OPEN
@@ -176,7 +178,7 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
         v-if="showAdditionalActions"
         ref="arrowDownButtonRef"
         icon="i-lucide-chevron-down"
-        :disabled="isLoading"
+        :disabled="isLoading || (!isAdmin && isResolved)"
         size="sm"
         class="ltr:rounded-l-none rtl:rounded-r-none !outline-0"
         color="slate"
