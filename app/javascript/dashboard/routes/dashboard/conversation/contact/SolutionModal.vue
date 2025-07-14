@@ -71,8 +71,7 @@ export default {
 
     const onCmdResolveConversation = () => {
       if (customAttributes.value[solutionAttribute.value.attribute_key] !== undefined) {
-        if (customAttributes.value[solutionAttribute.value.attribute_key] === 'Outra' && !customAttributes.value[solutionText.value.attribute_key]) {
-          useAlert(t('SOLUTION.EMPTY_OTHER_ALERT'));
+        if (customAttributes.value[solutionAttribute.value.attribute_key] === 'não listada' && !customAttributes.value[solutionText.value.attribute_key]) {          useAlert(t('SOLUTION.EMPTY_OTHER_ALERT'));
           return;
         }
         toggleStatus(wootConstants.STATUS_TYPE.RESOLVED);
