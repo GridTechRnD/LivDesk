@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, watch, computed } from 'vue';
 import { useEmitter } from 'dashboard/composables/emitter';
@@ -31,8 +30,8 @@ const { t } = useI18n();
 
 const currentChat = computed(() => store.getters.getSelectedChat);
 const contactId = computed(() => props.contact.id);
-const isOpen = computed(() =>
-  currentChat.value?.status === wootConstants.STATUS_TYPE.OPEN
+const isOpen = computed(
+  () => currentChat.value?.status === wootConstants.STATUS_TYPE.OPEN
 );
 
 const attributes = computed(() =>
@@ -41,10 +40,10 @@ const attributes = computed(() =>
 
 const solutionAttributes = computed(() => {
   const solution = attributes.value.find(
-    attribute => attribute.attribute_key === 'solution_list',
+    attribute => attribute.attribute_key === 'solution_list'
   );
   const solutionText = attributes.value.find(
-    attribute => attribute.attribute_key === 'solution',
+    attribute => attribute.attribute_key === 'solution'
   );
   return { solution, solutionText };
 });
@@ -52,8 +51,8 @@ const solutionAttributes = computed(() => {
 const solutionAttribute = computed(() => solutionAttributes.value.solution);
 const solutionText = computed(() => solutionAttributes.value.solutionText);
 
-const customAttributes = computed(() =>
-  currentChat.value?.custom_attributes || {}
+const customAttributes = computed(
+  () => currentChat.value?.custom_attributes || {}
 );
 
 const toggleStatus = status => {
@@ -61,7 +60,7 @@ const toggleStatus = status => {
   store
     .dispatch('toggleStatus', {
       conversationId: currentChat.value.id,
-      status
+      status,
     })
     .then(() => {
       isLoading.value = false;
@@ -72,8 +71,10 @@ const onCmdResolveConversation = () => {
   if (
     customAttributes.value[solutionAttribute.value?.attribute_key] !== undefined
   ) {
-    const solutionKey = customAttributes.value[solutionAttribute.value.attribute_key];
-    const solutionTextKey = customAttributes.value[solutionText.value.attribute_key];
+    const solutionKey =
+      customAttributes.value[solutionAttribute.value.attribute_key];
+    const solutionTextKey =
+      customAttributes.value[solutionText.value.attribute_key];
     if (
       ['não listada', 'not listed', 'no listada'].includes(solutionKey) &&
       !solutionTextKey
