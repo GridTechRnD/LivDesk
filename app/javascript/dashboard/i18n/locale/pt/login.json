@@ -1,9 +1,9 @@
 {
   "LOGIN": {
-    "TITLE": "Entrar no Chatwoot",
+    "TITLE": "Entrar no LivDesk",
     "EMAIL": {
       "LABEL": "E-mail",
-      "PLACEHOLDER": "Empresa{'@'}suaempresa.com.br",
+      "PLACEHOLDER": "Empresa{'@'}livoltek.com.br",
       "ERROR": "Por favor, insira um endereço de e-mail válido"
     },
     "PASSWORD": {

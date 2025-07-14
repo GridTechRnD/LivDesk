@@ -1,0 +1,9 @@
+{
+  "SOLUTION": {
+    "TITLE": "Añadir la solución del ticket",
+    "DESC": "Escriba la solución encontrada para resolver el ticket",
+    "EMPTY_VALUES_ALERT": "Por favor, complete el campo de solución",
+    "EMPTY_OTHER_ALERT": "Agregue detalles de la solución en el campo de texto",
+    "SUCCESS_ALERT": "Solución añadida con éxito"
+  }
+}
