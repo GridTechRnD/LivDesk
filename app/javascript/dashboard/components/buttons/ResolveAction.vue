@@ -7,6 +7,7 @@ import { useStore, useStoreGetters } from 'dashboard/composables/store';
 import { useEmitter } from 'dashboard/composables/emitter';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
 
+import SolutionModal from 'dashboard/routes/dashboard/conversation/contact/SolutionModal.vue';
 import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem.vue';
 import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu.vue';
 import wootConstants from 'dashboard/constants/globals';
@@ -91,12 +92,14 @@ const toggleStatus = (status, snoozedUntil) => {
     });
 };
 
+const showSolutionModal = ref(false);
+
 const onCmdOpenConversation = () => {
   toggleStatus(wootConstants.STATUS_TYPE.OPEN);
 };
 
 const onCmdResolveConversation = () => {
-  toggleStatus(wootConstants.STATUS_TYPE.RESOLVED);
+  showSolutionModal.value = !showSolutionModal.value;
 };
 
 const keyboardEvents = {
@@ -202,11 +205,17 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
             start
             icon="i-lucide-circle-dot-dashed"
             class="w-full"
-            @click="() => toggleStatus(wootConstants.STATUS_TYPE.PENDING)"
+            @click="() => toggleStatus(wootConstants.STATUS_TYPE.PENDING) && showSolutionModal == false"
           />
         </WootDropdownItem>
       </WootDropdownMenu>
     </div>
+    <SolutionModal
+      :show="showSolutionModal"
+      :contact="currentChat"
+      :chat="currentChat"
+      @close="showSolutionModal = false"
+    />
   </div>
 </template>
 

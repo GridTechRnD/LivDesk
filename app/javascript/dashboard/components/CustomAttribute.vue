@@ -230,7 +230,7 @@ export default {
             />
           </span>
           <NextButton
-            v-if="showActions && hasValue && (attributeKey !== 'protocolo_glpi' || currentRole === 'administrator')"
+            v-if="showActions && hasValue && (attributeKey !== 'protocolo_glpi' || currentRole === 'administrator' || attributeKey !== 'solution')"
             v-tooltip.left="$t('CUSTOM_ATTRIBUTES.ACTIONS.DELETE')"
             slate
             sm
