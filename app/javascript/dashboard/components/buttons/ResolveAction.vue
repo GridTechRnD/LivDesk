@@ -6,7 +6,8 @@ import { useI18n } from 'vue-i18n';
 import { useStore, useStoreGetters } from 'dashboard/composables/store';
 import { useEmitter } from 'dashboard/composables/emitter';
 import { useKeyboardEvents } from 'dashboard/composables/useKeyboardEvents';
-
+import { useAdmin } from 'dashboard/composables/useAdmin';
+import SolutionModal from 'dashboard/routes/dashboard/conversation/contact/SolutionModal.vue';
 import WootDropdownItem from 'shared/components/ui/dropdown/DropdownItem.vue';
 import WootDropdownMenu from 'shared/components/ui/dropdown/DropdownMenu.vue';
 import wootConstants from 'dashboard/constants/globals';
@@ -30,6 +31,8 @@ const openDropdown = () => toggleDropdown(true);
 
 const currentChat = computed(() => getters.getSelectedChat.value);
 
+const { isAdmin } = useAdmin();
+
 const isOpen = computed(
   () => currentChat.value.status === wootConstants.STATUS_TYPE.OPEN
 );
@@ -43,10 +46,13 @@ const isSnoozed = computed(
   () => currentChat.value.status === wootConstants.STATUS_TYPE.SNOOZED
 );
 
+const tooltipText = computed(() => {
+  if (isAdmin.value) return 'CONVERSATION.HEADER.SOLVED_TOOLTIP_ADMIN';
+  return 'CONVERSATION.HEADER.SOLVED_TOOLTIP';
+});
 const showAdditionalActions = computed(
   () => !isPending.value && !isSnoozed.value
 );
-
 const showOpenButton = computed(() => {
   return isPending.value || isSnoozed.value;
 });
@@ -91,12 +97,18 @@ const toggleStatus = (status, snoozedUntil) => {
     });
 };
 
+const isModalVisible = ref(false);
+
 const onCmdOpenConversation = () => {
   toggleStatus(wootConstants.STATUS_TYPE.OPEN);
 };
 
 const onCmdResolveConversation = () => {
-  toggleStatus(wootConstants.STATUS_TYPE.RESOLVED);
+  isModalVisible.value = true;
+};
+
+const onCancel = () => {
+  isModalVisible.value = false;
 };
 
 const keyboardEvents = {
@@ -142,17 +154,21 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
         :label="t('CONVERSATION.HEADER.RESOLVE_ACTION')"
         size="sm"
         color="slate"
+        icon="i-lucide-check"
         class="ltr:rounded-r-none rtl:rounded-l-none !outline-0"
         :is-loading="isLoading"
         @click="onCmdResolveConversation"
       />
       <Button
         v-else-if="isResolved"
-        :label="t('CONVERSATION.HEADER.REOPEN_ACTION')"
+        v-tooltip.left="$t(tooltipText)"
+        :label="t('CONVERSATION.HEADER.SOLVED')"
         size="sm"
         color="slate"
+        icon="i-lucide-check-circle"
         class="ltr:rounded-r-none rtl:rounded-l-none !outline-0"
         :is-loading="isLoading"
+        :disabled="!isAdmin"
         @click="onCmdOpenConversation"
       />
       <Button
@@ -167,7 +183,7 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
         v-if="showAdditionalActions"
         ref="arrowDownButtonRef"
         icon="i-lucide-chevron-down"
-        :disabled="isLoading"
+        :disabled="isLoading || (!isAdmin && isResolved)"
         size="sm"
         class="ltr:rounded-l-none rtl:rounded-r-none !outline-0"
         color="slate"
@@ -207,6 +223,13 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
         </WootDropdownItem>
       </WootDropdownMenu>
     </div>
+    <SolutionModal
+      :show="isModalVisible"
+      :contact="currentChat"
+      :chat="currentChat"
+      @close="onCancel"
+      @update:show="isModalVisible = $event"
+    />
   </div>
 </template>
 

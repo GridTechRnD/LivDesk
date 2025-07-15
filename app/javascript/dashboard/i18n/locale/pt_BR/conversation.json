@@ -63,12 +63,15 @@
     "FEEDBACK_TITLE": "Feedback",
     "REPLY_MESSAGE_NOT_FOUND": "Mensagem não disponível",
     "CARD": {
-      "SHOW_LABELS": "Mostrar etiquetas",
+      "SHOW_LABELS": "Mostrar etiquetas", 
       "HIDE_LABELS": "Ocultar as etiquetas"
     },
     "HEADER": {
       "RESOLVE_ACTION": "Resolver",
       "REOPEN_ACTION": "Reabrir",
+      "SOLVED": "Resolvido",
+      "SOLVED_TOOLTIP": "Entre em contato com o administrador para reabrir o chamado",
+      "SOLVED_TOOLTIP_ADMIN": "Pressione para reabrir o chamado",
       "OPEN_ACTION": "Abrir",
       "MORE_ACTIONS": "Mais ações",
       "OPEN": "Mais",
