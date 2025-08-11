@@ -1,0 +1,74 @@
+{
+  "AVAILABILITY": {
+    "HEADER": "Disponibilidade do Serviço",
+    "DESCRIPTION": "Gerencie períodos de indisponibilidade do sistema.",
+    "LEARN_MORE": "Saiba mais",
+    "HEADER_BTN_TXT": "Adicionar Indisponibilidade",
+    "DEFAULT_HOURS_BTN": "Horário Padrão",
+    "LOADING": "Carregando...",
+    "LIST": {
+      "404": "Nenhum registro encontrado.",
+      "TABLE_HEADER": {
+        "ID": "ID",
+        "INICIO": "Início",
+        "FIM": "Fim",
+        "MOTIVO": "Motivo",
+        "MENSAGEM": "Mensagem",
+        "RESPONSAVEL": "Responsável",
+        "INBOX": "Caixa de Entrada",
+        "ACOES": "Ações"
+      }
+    },
+    "MOTIVO": {
+      "RECESS": "Recesso",
+      "UNAVAILABILITY": "Indisponibilidade",
+      "MAINTENANCE": "Manutenção"
+    },
+    "MODAL": {
+      "TITLE": "Adicionar Disponibilidade",
+      "DESC": "Preencha o formulário abaixo para adicionar um novo período de disponibilidade."
+    },
+    "FORM": {
+      "RESPONSAVEL": "Responsável",
+      "RESPONSAVEL_PLACEHOLDER": "Selecione o responsável",
+      "INBOX": "Caixa de Entrada",
+      "INBOX_PLACEHOLDER": "Selecione uma caixa de entrada",
+      "INICIO": "Início",
+      "INICIO_PLACEHOLDER": "Selecione o início",
+      "FIM": "Fim",
+      "FIM_PLACEHOLDER": "Selecione o fim",
+      "MOTIVO": "Motivo",
+      "MOTIVO_PLACEHOLDER": "Selecione um motivo",
+      "MENSAGEM": "Mensagem",
+      "MENSAGEM_PLACEHOLDER": "Digite uma mensagem",
+      "CANCEL": "Cancelar",
+      "SAVE": "Salvar",
+      "SAVING": "Salvando...",
+      "ERRORS": {
+        "INVALID_DATES": "Selecione datas/horários de início e fim válidos.",
+        "END_AFTER_START": "A data/hora de fim deve ser posterior à data/hora de início.",
+        "INVALID_REASON": "Motivo inválido.",
+        "MESSAGE_REQUIRED": "Mensagem obrigatória.",
+        "ACCOUNT_INBOX_REQUIRED": "ID da conta e da caixa de entrada são obrigatórios."
+      }
+    },
+    "DEFAULT_HOURS": {
+      "TITLE": "Editar Horário Padrão",
+      "DESC": "Defina o horário de trabalho padrão da sua equipe.",
+      "INICIO_PLACEHOLDER": "Selecione o horário de início",
+      "FIM_PLACEHOLDER": "Selecione o horário de fim",
+      "SAVE": "Salvar",
+      "SAVING": "Salvando...",
+      "CANCEL": "Cancelar",
+      "CHAVE": "Chave",
+      "INICIO": "Início",
+      "FIM": "Fim",
+      "ALMOCO": "Almoço",
+      "EXPEDIENTE": "Expediente",
+      "ERRORS": {
+        "FILL_ALL": "Todos os campos de horário devem ser preenchidos.",
+        "START_LESS_THAN_END": "O horário de início deve ser menor que o horário de fim."
+      }
+    }
+  }
+}

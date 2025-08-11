@@ -226,7 +226,8 @@
     "APPEARANCE": "Change appearance",
     "SUPER_ADMIN_CONSOLE": "SuperAdmin console",
     "DOCS": "Read documentation",
-    "LOGOUT": "Log out"
+    "LOGOUT": "Log out",
+    "AVAILABILITY_SETTINGS": "Availability Settings"
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "days trial remaining.",

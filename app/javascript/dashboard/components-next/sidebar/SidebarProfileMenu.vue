@@ -96,6 +96,13 @@ const menuItems = computed(() => {
       target: '_blank',
     },
     {
+      show: currentUser.value.role === 'administrator',
+      showOnCustomBrandedInstance: true,
+      label: t('SIDEBAR_ITEMS.AVAILABILITY_SETTINGS'),
+      icon: 'i-lucide-clock',
+      link: { name: 'availability', params: { accountId: accountId.value } },
+    },
+    {
       show: true,
       showOnCustomBrandedInstance: true,
       label: t('SIDEBAR_ITEMS.LOGOUT'),

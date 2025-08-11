@@ -226,7 +226,8 @@
     "APPEARANCE": "Alterar Tema",
     "SUPER_ADMIN_CONSOLE": "Console de Super Admin",
     "DOCS": "Ler documentação",
-    "LOGOUT": "Encerrar sessão"
+    "LOGOUT": "Encerrar sessão",
+    "AVAILABILITY_SETTINGS": "Configurações de Disponibilidade"
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "dias de teste restantes.",

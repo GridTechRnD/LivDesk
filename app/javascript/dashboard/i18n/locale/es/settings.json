@@ -226,7 +226,8 @@
     "APPEARANCE": "Cambiar apariencia",
     "SUPER_ADMIN_CONSOLE": "Consola SuperAdmin",
     "DOCS": "Leer la documentación",
-    "LOGOUT": "Cerrar sesión"
+    "LOGOUT": "Cerrar sesión",
+    "AVAILABILITY_SETTINGS": "Configuración de Disponibilidad"
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "días de prueba restantes.",

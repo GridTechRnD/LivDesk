@@ -303,8 +303,7 @@ export default {
             v-if="
               showActions &&
               hasValue &&
-              (attributeKey !== 'protocolo_glpi' ||
-                currentRole === 'administrator')
+              (attributeKey === 'protocolo_glpi')
             "
             v-tooltip="$t('CUSTOM_ATTRIBUTES.ACTIONS.COPY')"
             xs
