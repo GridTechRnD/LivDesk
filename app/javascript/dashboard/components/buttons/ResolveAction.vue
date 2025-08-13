@@ -103,8 +103,23 @@ const onCmdOpenConversation = () => {
   toggleStatus(wootConstants.STATUS_TYPE.OPEN);
 };
 
+const attributes = computed(() =>
+  store.getters['attributes/getAttributesByModel']('conversation_attribute')
+);
+
 const onCmdResolveConversation = () => {
-  isModalVisible.value = true;
+  const hasSolutionList = attributes.value.some(
+    attr => attr.attribute_key === 'solution_list'
+  );
+  const hasSolution = attributes.value.some(
+    attr => attr.attribute_key === 'solution'
+  );
+
+  if (hasSolutionList && hasSolution) {
+    isModalVisible.value = true;
+  } else {
+    toggleStatus(wootConstants.STATUS_TYPE.RESOLVED);
+  }
 };
 
 const onCancel = () => {
