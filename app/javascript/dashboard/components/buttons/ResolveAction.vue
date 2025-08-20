@@ -209,7 +209,7 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
     <div
       v-if="showActionsDropdown"
       v-on-clickaway="closeDropdown"
-      class="dropdown-pane dropdown-pane--open left-auto top-full mt-0.5 start-0 xl:start-auto xl:end-0 max-w-[12.5rem] min-w-[9.75rem]"
+      class="border rounded-lg shadow-lg border-n-strong dark:border-n-strong box-content p-2 w-fit z-10 bg-n-alpha-3 backdrop-blur-[100px] absolute block left-auto top-full mt-0.5 start-0 xl:start-auto xl:end-0 max-w-[12.5rem] min-w-[9.75rem] [&_ul>li]:mb-0"
     >
       <WootDropdownMenu class="mb-0">
         <WootDropdownItem v-if="!isPending">
@@ -247,11 +247,3 @@ useEmitter(CMD_RESOLVE_CONVERSATION, onCmdResolveConversation);
     />
   </div>
 </template>
-
-<style lang="scss" scoped>
-.dropdown-pane {
-  .dropdown-menu__item {
-    @apply mb-0;
-  }
-}
-</style>
