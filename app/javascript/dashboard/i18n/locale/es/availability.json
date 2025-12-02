@@ -1,0 +1,74 @@
+{
+  "AVAILABILITY": {
+    "HEADER": "Disponibilidad del Servicio",
+    "DESCRIPTION": "Gestione los períodos de indisponibilidad del sistema.",
+    "LEARN_MORE": "Saber más",
+    "HEADER_BTN_TXT": "Agregar Indisponibilidad",
+    "DEFAULT_HOURS_BTN": "Horario Predeterminado",
+    "LOADING": "Cargando...",
+    "LIST": {
+      "404": "No se encontraron registros.",
+      "TABLE_HEADER": {
+        "ID": "ID",
+        "INICIO": "Inicio",
+        "FIM": "Fin",
+        "MOTIVO": "Motivo",
+        "MENSAGEM": "Mensaje",
+        "RESPONSAVEL": "Responsable",
+        "INBOX": "Bandeja de Entrada",
+        "ACOES": "Acciones"
+      }
+    },
+    "MOTIVO": {
+      "RECESS": "Receso",
+      "UNAVAILABILITY": "Indisponibilidad",
+      "MAINTENANCE": "Mantenimiento"
+    },
+    "MODAL": {
+      "TITLE": "Agregar Disponibilidad",
+      "DESC": "Complete el formulario a continuación para agregar un nuevo período de disponibilidad."
+    },
+    "FORM": {
+      "RESPONSAVEL": "Responsable",
+      "RESPONSAVEL_PLACEHOLDER": "Seleccione el responsable",
+      "INBOX": "Bandeja de Entrada",
+      "INBOX_PLACEHOLDER": "Seleccione una bandeja de entrada",
+      "INICIO": "Inicio",
+      "INICIO_PLACEHOLDER": "Seleccione el inicio",
+      "FIM": "Fin",
+      "FIM_PLACEHOLDER": "Seleccione el fin",
+      "MOTIVO": "Motivo",
+      "MOTIVO_PLACEHOLDER": "Seleccione un motivo",
+      "MENSAGEM": "Mensaje",
+      "MENSAGEM_PLACEHOLDER": "Ingrese un mensaje",
+      "CANCEL": "Cancelar",
+      "SAVE": "Guardar",
+      "SAVING": "Guardando...",
+      "ERRORS": {
+        "INVALID_DATES": "Seleccione fechas/horarios de inicio y fin válidos.",
+        "END_AFTER_START": "La fecha/hora de fin debe ser posterior a la de inicio.",
+        "INVALID_REASON": "Motivo inválido.",
+        "MESSAGE_REQUIRED": "Mensaje obligatorio.",
+        "ACCOUNT_INBOX_REQUIRED": "El ID de la cuenta y de la bandeja de entrada son obligatorios."
+      }
+    },
+    "DEFAULT_HOURS": {
+      "TITLE": "Editar Horario Predeterminado",
+      "DESC": "Defina el horario de trabajo predeterminado de su equipo.",
+      "INICIO_PLACEHOLDER": "Seleccione la hora de inicio",
+      "FIM_PLACEHOLDER": "Seleccione la hora de fin",
+      "SAVE": "Guardar",
+      "SAVING": "Guardando...",
+      "CANCEL": "Cancelar",
+      "CHAVE": "Clave",
+      "INICIO": "Inicio",
+      "FIM": "Fin",
+      "ALMOCO": "Almuerzo",
+      "EXPEDIENTE": "Jornada Laboral",
+      "ERRORS": {
+        "FILL_ALL": "Todos los campos de horario deben ser completados.",
+        "START_LESS_THAN_END": "La hora de inicio debe ser menor que la hora de fin."
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import availability from './availability.json';
 import solution from './solution.json';
 import advancedFilters from './advancedFilters.json';
 import agentBots from './agentBots.json';
@@ -38,6 +39,7 @@ import teamsSettings from './teamsSettings.json';
 import whatsappTemplates from './whatsappTemplates.json';
 
 export default {
+  ...availability,
   ...solution,
   ...advancedFilters,
   ...agentBots,

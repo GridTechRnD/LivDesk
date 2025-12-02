@@ -1,0 +1,74 @@
+{
+  "AVAILABILITY": {
+    "HEADER": "Service Availability",
+    "DESCRIPTION": "Manage system unavailability periods.",
+    "LEARN_MORE": "Learn more",
+    "HEADER_BTN_TXT": "Add Unavailability",
+    "DEFAULT_HOURS_BTN": "Default Hours",
+    "LOADING": "Loading...",
+    "LIST": {
+      "404": "No records found.",
+      "TABLE_HEADER": {
+        "ID": "ID",
+        "INICIO": "Start",
+        "FIM": "End",
+        "MOTIVO": "Reason",
+        "MENSAGEM": "Message",
+        "RESPONSAVEL": "Responsible",
+        "INBOX": "Inbox",
+        "ACOES": "Actions"
+      }
+    },
+    "MOTIVO": {
+      "RECESS": "Recess",
+      "UNAVAILABILITY": "Unavailability",
+      "MAINTENANCE": "Maintenance"
+    },
+    "MODAL": {
+      "TITLE": "Add Availability",
+      "DESC": "Fill in the form below to add a new availability period."
+    },
+    "FORM": {
+      "RESPONSAVEL": "Responsible",
+      "RESPONSAVEL_PLACEHOLDER": "Select the responsible",
+      "INBOX": "Inbox",
+      "INBOX_PLACEHOLDER": "Select an inbox",
+      "INICIO": "Start",
+      "INICIO_PLACEHOLDER": "Select start",
+      "FIM": "End",
+      "FIM_PLACEHOLDER": "Select end",
+      "MOTIVO": "Reason",
+      "MOTIVO_PLACEHOLDER": "Select a reason",
+      "MENSAGEM": "Message",
+      "MENSAGEM_PLACEHOLDER": "Enter a message",
+      "CANCEL": "Cancel",
+      "SAVE": "Save",
+      "SAVING": "Saving...",
+      "ERRORS": {
+        "INVALID_DATES": "Please select valid start and end dates/times.",
+        "END_AFTER_START": "The end date/time must be after the start date/time.",
+        "INVALID_REASON": "Invalid reason.",
+        "MESSAGE_REQUIRED": "Message is required.",
+        "ACCOUNT_INBOX_REQUIRED": "Account ID and Inbox ID are required."
+      }
+    },
+    "DEFAULT_HOURS": {
+      "TITLE": "Edit Default Hours",
+      "DESC": "Set the default working hours for your team.",
+      "INICIO_PLACEHOLDER": "Select start time",
+      "FIM_PLACEHOLDER": "Select end time",
+      "SAVE": "Save",
+      "SAVING": "Saving...",
+      "CANCEL": "Cancel",
+      "CHAVE": "Key",
+      "INICIO": "Start",
+      "FIM": "End",
+      "ALMOCO": "Lunch",
+      "EXPEDIENTE": "Work Hours",
+      "ERRORS": {
+        "FILL_ALL": "All time fields must be filled.",
+        "START_LESS_THAN_END": "The start time must be less than the end time."
+      }
+    }
+  }
+}
